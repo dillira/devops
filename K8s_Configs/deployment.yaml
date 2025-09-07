@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-spring-app-deployment   # ✅ You define the deployment name
+spec:
+  replicas: 1                      # ✅ How many pods you want
+  selector:
+    matchLabels:
+      app: my-spring-app           # ✅ This must match pod labels
+  template:
+    metadata:
+      labels:
+        app: my-spring-app         # ✅ Label used to match pods (used in Services)
+    spec:
+      containers:
+        - name: my-spring-app        # ✅ You define the container name
+          image: dilliraja123/my-spring-app  # ✅ Your Docker image!
+          ports:
+            - containerPort: 8080      # ✅ App's internal port

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-spring-app-service      # ✅ You define service name
+spec:
+  type: NodePort                   # ✅ Type of access (NodePort = accessible from outside)
+  selector:
+    app: my-spring-app             # ✅ Must match pod/deployment labels
+  ports:
+    - protocol: TCP
+      port: 80                       # ✅ Port used inside the cluster
+      targetPort: 8080              # ✅ Port your app listens on in the container
+      nodePort: 30007               # ✅ Port on your machine (must be in 30000–32767)
